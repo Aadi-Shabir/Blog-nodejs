@@ -1,3 +1,4 @@
+import {} from 'dotenv/config'
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes/user-routes';
@@ -17,7 +18,8 @@ app.use('/api/blog',authenticationToken, blogRouter)
 // ((err)=>console.log(err));
     
 
-mongoose.connect("mongodb+srv://waniadil:eXP1CAyhlPcyVmJq@cluster0.abumjll.mongodb.net/Blog?retryWrites=true&w=majority").then
+mongoose.connect(process.env.DB_CONNECTION).then
+// mongoose.connect("mongodb://admin:admin@0.0.0.0:27017/Blog").then
 (()=>app.listen(5000)).then
 (()=>console.log('connected to db and server is running on port 5000')).catch
 ((err)=>console.log(err));
